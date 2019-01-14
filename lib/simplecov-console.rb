@@ -5,7 +5,7 @@ class SimpleCov::Formatter::Console
 
   VERSION = File.new(File.join(File.expand_path(File.dirname(__FILE__)), "../VERSION")).read.strip
 
-  ATTRIBUTES = [:table_options]
+  ATTRIBUTES = [:table_options, :show_table]
   class << self
     attr_accessor(*ATTRIBUTES)
   end
@@ -28,6 +28,10 @@ class SimpleCov::Formatter::Console
     puts
 
     if root.nil? then
+      return
+    end
+      
+    if SimpleCov::Formatter::Console.show_table == false
       return
     end
 
